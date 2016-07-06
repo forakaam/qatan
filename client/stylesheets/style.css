@@ -1,0 +1,45 @@
+* { 
+  box-sizing: border-box;
+}
+
+.row {
+  width:100%;
+  text-align:center;
+}
+
+/* hexagons made with the help of http://csshexagon.com/ */
+.hex {
+  position: relative;
+  display:inline-block;
+  width: 200px; 
+  height: 115.47px;
+  background-color: #64C7CC;
+  margin: 30px 0;
+  border-left: solid 1px #333333;
+  border-right: solid 1px #333333;
+}
+
+.hex:before,
+.hex:after {
+  content: "";
+  position: absolute;
+  width: 141.42px;
+  height: 141.42px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 28.2893px;
+}
+
+.hex:before {
+  top: -70.7107px;
+  border-top: solid 1.4142px #333333;
+  border-right: solid 1.4142px #333333;
+}
+
+.hex:after {
+  bottom: -70.7107px;
+  border-bottom: solid 1.4142px #333333;
+  border-left: solid 1.4142px #333333;
+}

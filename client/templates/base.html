@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-cloak/>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Settlers of Qatan</title>
+  <style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
+  </style>
+  <base href="/">
+
+  <!--AngularJS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js" type="text/javascript"></script>
+  <!-- ngRoute -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js" type="text/javascript" ></script>
+  <!-- custom scripts -->
+  <script src="/js/app.js" type="text/javascript"></script>
+  <script src="/js/controllers.js" type="text/javascript"></script>
+  <!-- custom stylesheet -->
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+</head>
+<body>
+  <div ng-view>
+  </div>
+</body>
+</html>
