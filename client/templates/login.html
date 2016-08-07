@@ -1,0 +1,17 @@
+<header>
+  <h2>Log in or sign up</h2>
+</header>
+  {{$ctrl.error}}
+  <form action="javascript:void(0)" ng-submit="$ctrl.register(newUser)"> 
+    <input type="text" placeholder="username" ng-model="newUser.username" name="username" required/>
+    <input type="password" placeholder="password" ng-model="newUser.password" name="password" required/>
+    <input type="password" placeholder="confirm password" ng-model="newUser.confirmation" name="confirmation" required/>
+    <input type="submit" value="Sign Up"/>
+  </form>
+  <form action="javascript:void(0)" ng-submit="$ctrl.login(player)">
+    <input type="text" placeholder="username"  ng-model="player.username" name="username" autofocus required/>
+    <input type="password"  placeholder=" password" ng-model="player.password" name="password" required/>
+    <input type="submit" value="Login"/>
+  </form>
+
+

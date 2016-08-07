@@ -1,14 +1,115 @@
 * { 
   box-sizing: border-box;
 }
+.wrapper {
+  width: 980px;
+  margin: auto;
+}
 
-.row {
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+node {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%; 
+  z-index:2; 
+}
+.node1 { 
+  right:180px; 
+  bottom:100px; 
+  background-color:blue;
+}
+.node2 { 
+  left:88px; 
+  bottom:164px;
+  background-color:red;
+}
+.node3 { 
+  left:188px; 
+  bottom:100px; 
+  background-color:purple;
+}
+.node4 { 
+  left:188px; 
+  top:100px; 
+  background-color:green;
+}
+.node5 { 
+  left:88px; 
+  top:164px; 
+  z-index:3;
+  background-color:black;
+}
+.node6 { 
+  right:180px; 
+  top:100px; 
+  background-color:yellow;
+}
+
+edge {
+  position: absolute; 
+  width: 115.43px; 
+  height:5px;
+  z-index:2;
+}
+.left {
+  transform: rotate(90deg); 
+  bottom: 55px; 
+  right: 140px;
+  background-color:green;
+}
+.right {
+  transform: rotate(90deg); 
+  bottom: 55px; 
+  left: 143px;
+  background-color:red;
+  height:5px;
+  z-index:2;
+}
+.bottomRight {
+  transform: rotate(150deg);  
+  top: 146px; 
+  left: 90px;
+  background-color:black;
+}
+.bottomLeft {
+  transform: rotate(30deg);  
+  top: 146px; 
+  right: 90px;
+  background-color:yellow;
+}
+
+.topLeft{
+  transform: rotate(150deg);  
+  bottom: 143px; 
+  right: 92px;
+  background-color:blue;
+}
+.topRight{
+  transform: rotate(30deg);  
+  bottom: 143px; 
+  left: 92px;
+  background-color:orange;
+}
+.board{
+/*  margin:50px;
+*/  
+  width:70%;
+  float:left;
+}
+row {
   width:100%;
   text-align:center;
+  display:block;
 }
 
 /* hexagons made with the help of http://csshexagon.com/ */
-.hex {
+hex {
   position: relative;
   display:inline-block;
   width: 200px; 
@@ -17,10 +118,12 @@
   margin: 30px 0;
   border-left: solid 1px #333333;
   border-right: solid 1px #333333;
+  line-height:115.47px;
+
 }
 
-.hex:before,
-.hex:after {
+hex:before,
+hex:after {
   content: "";
   position: absolute;
   width: 141.42px;
@@ -32,14 +135,49 @@
   left: 28.2893px;
 }
 
-.hex:before {
+hex:before {
   top: -70.7107px;
   border-top: solid 1.4142px #333333;
   border-right: solid 1.4142px #333333;
 }
 
-.hex:after {
+hex:after {
   bottom: -70.7107px;
   border-bottom: solid 1.4142px #333333;
   border-left: solid 1.4142px #333333;
+}
+
+token {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  top: 32px;
+  left:75px;     
+  z-index:2;
+  background-color:red;
+}
+controls {
+  border: black solid 1px;
+  width: 20%;
+  padding:200px;
+  position: absolute;
+  float:left;
+  bottom:0;
+/*  background-color:red;*/
+}
+.dice {
+  width: 90px;
+  height: 90px;
+  position:absolute;
+  bottom:0;
+}
+#die1 {
+  left:0;
+}
+.city {
+  border: 10px black solid;
+}
+#die2 {
+left:80px;
 }

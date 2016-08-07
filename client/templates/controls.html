@@ -1,0 +1,41 @@
+
+  <!-- need to be able to:
+    see victory points
+    see resources
+    see development cards
+    play development cards
+    trade resources with other players
+    trade resources at 4:1, or better if harbor
+    build road
+    build settlement
+    build cities
+    buy development card
+    end turn
+    chat with other players?
+   -->
+<div>
+    <h4>{{$ctrl.msg}}</h4>
+    <h4 ng-show="$ctrl.turn">It is <span ng-hide="$ctrl.turn.username === $ctrl.player.username">{{$ctrl.turn.username}}'s</span><span ng-show="$ctrl.turn.username === $ctrl.player.username">your</span> turn
+    <h5>Resources</h5>
+    <p>Grain: {{$ctrl.player.fields}}</p>  
+    <p>Brick: {{$ctrl.player.hills}}</p>  
+    <p>Ore: {{$ctrl.player.mountains}}</p>  
+    <p>Lumber: {{$ctrl.player.forest}}</p>  
+    <p>Wool: {{$ctrl.player.pasture}}</p>  
+    </h4>
+    <h5>Remaining Roads</h5>
+    <p>{{15 - $ctrl.roads}}</p>  
+    <h5>Remaining Settlements</h5>
+    <p>{{5 - $ctrl.settlements}}</p>    
+    <h5>Remaining Cities</h5>
+    <p>{{4 - $ctrl.cities}}</p>
+    <h5>My Victory Points</h5>
+    <p>{{ 0 + ($ctrl.cities * 2) + $ctrl.settlements + extra }}</p>
+</div>
+<div>
+  <h5 ng-repeat="opponent in $ctrl.player.opponents">{{opponent}}</h5>
+  <p>{{opponent.victory_points}}</p>
+</div>
+<button ng-click="$ctrl.rollDice()">Roll Dice</button>
+<canvas class="dice" id="die1"></canvas>
+<canvas class="dice" id="die2"></canvas>

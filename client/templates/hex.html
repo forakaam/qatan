@@ -1,0 +1,18 @@
+<node class="node1" ng-style="{'background-color': $ctrl.nodes[0].color}" ng-class="{city: $ctrl.nodes[0].building === 'city'}" ng-click="$ctrl.buildBuilding($ctrl.nodes[0])"></node>
+<edge class="topLeft" ng-style="{'background-color':$ctrl.model.edges[0].color}" ng-click="$ctrl.buildRoad($ctrl.model.edges[0])"></edge>
+<node class="node2" ng-style="{'background-color': $ctrl.nodes[1].color}" ng-click="$ctrl.buildBuilding($ctrl.nodes[1])" ng-class="{city: $ctrl.nodes[1].building === 'city'}"></node>
+<edge class="topRight" ng-style="{'background-color': $ctrl.model.edges[1].color,
+}" ng-click="$ctrl.buildRoad($ctrl.model.edges[1])"></edge>
+<node class="node3" ng-style="{'background-color': $ctrl.nodes[2].color}" ng-class="{city: $ctrl.nodes[2].building === 'city'}" ng-click="$ctrl.buildBuilding($ctrl.nodes[2])"
+></node>
+<edge class="right" ng-style="{'background-color': $ctrl.model.edges[2].color}" ng-click="$ctrl.buildRoad($ctrl.model.edges[2])"></edge>
+<node class="node4" ng-style="{'background-color': $ctrl.nodes[3].color}" ng-class="{city: $ctrl.nodes[3].building === 'city'}" ng-click="$ctrl.buildBuilding($ctrl.nodes[3])"></node>
+<edge class="bottomRight" ng-style="{'background-color': $ctrl.model.edges[3].color}" ng-click="$ctrl.buildRoad($ctrl.model.edges[3])"></edge>
+<node class="node5" ng-style="{'background-color': $ctrl.nodes[4].color}" ng-class="{city: $ctrl.nodes[4].building === 'city'}" ng-click="$ctrl.buildBuilding($ctrl.nodes[4])"></node>
+<edge class="bottomLeft" ng-style="{'background-color': $ctrl.model.edges[4].color}" ng-click="$ctrl.buildRoad($ctrl.model.edges[4])"></edge>
+<node class="node6" ng-style="{'background-color': $ctrl.nodes[5].color}" ng-class="{city: $ctrl.nodes[5].building === 'city'}" ng-click="$ctrl.buildBuilding($ctrl.nodes[5])"></node>
+<edge class="left" ng-style="{'background-color': $ctrl.model.edges[5].color}" ng-click="$ctrl.buildRoad($ctrl.model.edges[5])"></edge>
+<token val="{{$ctrl.model.val}}" ng-click="$ctrl.log()"></token>
+<!-- each node must be associated with up to 3 lines
+must be able to count longest road 
+each -->

@@ -1,29 +1,17 @@
-<div class='row'>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
+<input type="text" ng-model="$ctrl.name"/>
+<input type="submit" value="New Game" ng-click="$ctrl.newGame($ctrl.name)"/>
+<ul ng-hide="$ctrl.inGame"> Join Game
+  <li ng-repeat="game in $ctrl.openGames">{{game.name}}
+    <input type="submit" value="join" ng-click="$ctrl.joinGame(game)">
+    <ul> Players
+      <li ng-repeat="player in game.players">{{player.username}}</li>
+    </ul>
+  </li>
+</ul>
+<div ng-show="$ctrl.inGame"> Opponents
+  <ul>
+    <li ng-repeat="opponent in $ctrl.opponents">{{opponent.username}}</li>
+  </ul>
 </div>
-<div class='row'>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-</div> 
-<div class='row'>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-</div>  
-<div class='row'>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-</div>  
-<div class='row'>
-  <div class='hex'></div>
-  <div class='hex'></div>
-  <div class='hex'></div>
-</div>   
+
+
