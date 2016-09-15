@@ -143,7 +143,6 @@
           GameService.buildSettlement(settlement,ctrl);
         });
         on('city built', city => {
-          debugger
           GameService.buildCity(city,ctrl)
         });
       },
@@ -157,6 +156,10 @@
       getDiceVals(ctrl){
         on('dice rolled', data => {
           GameService.getResources(data.values,ctrl.player)
+            if (ctrl.player.id !== data.player.id) {
+              ctrl.die1.roll(0,data.values.val1);
+              ctrl.die2.roll(0,data.values.val2);
+            }
           console.log(data.player.username + ' rolled a ' + data.values.val1 + ' and a ' + data.values.val2);
         });
       }
@@ -254,24 +257,28 @@
         }
         this.val = this.frameIndex + 1 + (this.rowTop/this.height * this.rows *this.framesPerRow);
     }
-    Dice.prototype.roll = function(time){
+    Dice.prototype.roll = function(time,val){
+      var repeat = true;
+
       function loop(){
-        if (time) {
+        if (repeat) {
           this.update();
           this.render();
           window.requestAnimationFrame(loop);
         }
-        else {
-          this.frameIndex + 1 + (this.rowTop/this.height * this.rows *this.framesPerRow)
-        }
+        if (time) window.setTimeout(()=> repeat = false,time);
+        else if (this.val === val) repeat = false;
       }
+
       var loop = loop.bind(this);
    
       window.requestAnimationFrame(loop)
-      window.setTimeout(()=>time = 0,time);
-      //return loop();
 
     }
+    Dice.prototype.display = function(num) {
+      this.frameIndex
+    }
+
     function Player(username,password,color){
       this.username = username
       this.password = password

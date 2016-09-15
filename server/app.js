@@ -174,6 +174,7 @@ io.on('connection',socket => {
         var i = game.players.sort().findIndex(el => el.id === player.id);
         var nextPlayer = game.players[i+1] ? game.players[i+1]: game.players[0];
         io.to(player.game_id).emit('new turn',nextPlayer);
+        console.log(nextPlayer);
       }
       else 
         console.log(error)
