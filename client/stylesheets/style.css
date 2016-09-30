@@ -17,7 +17,7 @@ node {
   width: 30px;
   height: 30px;
   border-radius: 100%; 
-  z-index:2; 
+  z-index:3; 
 }
 .node1 { 
   right:180px; 
@@ -42,7 +42,6 @@ node {
 .node5 { 
   left:88px; 
   top:164px; 
-  z-index:3;
   background-color:black;
 }
 .node6 { 
@@ -69,7 +68,6 @@ edge {
   left: 143px;
   background-color:red;
   height:5px;
-  z-index:2;
 }
 .bottomRight {
   transform: rotate(150deg);  

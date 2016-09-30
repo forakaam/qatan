@@ -82,6 +82,7 @@
     var current = PlayerService.getCurrent();
     PlayerService.get(current.id).then (data => {
       $ctrl.player = data.data;
+      $ctrl.player.fields = 0;
       $ctrl.player.hills = 0;
       $ctrl.player.mountains = 0;
       $ctrl.player.forest = 0;
@@ -91,7 +92,7 @@
     SocketService.getRoads($ctrl);
     SocketService.getTurn($ctrl);
     SocketService.getDiceVals($ctrl);
-
+     
     var canvas1 = document.getElementById("die1");
     var canvas2 = document.getElementById("die2");
     $ctrl.die1 = GameService.createDice(canvas1);
@@ -106,6 +107,9 @@
           SocketService.rollDice({val1: $ctrl.die1.val,val2: $ctrl.die2.val},$ctrl.player);
         },time1 > time2 ? time1 : time2);
       }
+    };
+    $ctrl.endTurn = function(){
+      SocketService.endTurn($ctrl.player);  
     };
   };
 
@@ -130,43 +134,25 @@
     PlayerService.get(current.id).then (data => $ctrl.player = data.data);
     SocketService.getTurn($ctrl);
 
-    //set up phase 
-    // function setupCount(){
-    //   debugger
-    //     if (GameService.getSettlements($ctrl.player.id) === 1 && GameService.getRoads($ctrl.player.id) === 1) {
-    //       $ctrl.setup = 1;
-    //     }
-    //     if (GameService.getSettlements($ctrl.player.id) === 2 && GameService.getRoads($ctrl.player.id) === 2){
-    //       $ctrl.setup = 0;
-    //       debugger
-    //     }
-    // }
 
     $ctrl.buildRoad = function(edge){
       if ($ctrl.turn.id === $ctrl.player.id) {
         if ($ctrl.setup && !edge.road) {
-          if (GameService.getRoads($ctrl.player.id) - GameService.getSettlements($ctrl.player.id) ===0) {
+          if (GameService.getRoads($ctrl.player.id) - GameService.getSettlements($ctrl.player.id) === 0) {
             SocketService.buildRoad(edge,$ctrl.player);
           }
         }
-        else if (GameService.validRoad(edge,$ctrl.player.id)) {
-          SocketService.buildRoad(edge,$ctrl.player);
-          SocketService.endTurn($ctrl.player);  
+        else if (GameService.validRoad(edge,$ctrl.player.id) && GameService.hasResources($ctrl.player,'road')) {
+          SocketService.buildRoad(edge,$ctrl.player); 
         } 
       } 
     };
-      //emit to other players
-      //if ($ctrl.turn.id === player.id && !edge.road) {
 
-      //check if road is conected to node connected to player's road
-      
     $ctrl.buildBuilding = function(node){
-      debugger
       if ($ctrl.turn.id === $ctrl.player.id) {
         if (GameService.validSettlement(node,$ctrl.player.id)){
           SocketService.buildSettlement(node,$ctrl.player);
           if ($ctrl.setup) {
-            //setupCount()
             $ctrl.setup--;
             SocketService.endTurn($ctrl.player); 
           }

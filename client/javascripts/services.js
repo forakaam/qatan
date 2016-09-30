@@ -598,6 +598,33 @@
       validSettlement(node,id) { 
         return !node.building && node.edges.find(edge => edge.player_id === id);
       },
+      hasResources(player,construction){
+        if (construction === 'road'){
+          if (player.hills && player.forest) {
+            player.hills--;
+            player.forest--;
+            return true;
+          }  
+        }
+        else if (construction === 'settlement'){
+          if (player.hills && player.forest && player.pasture && player.fields) {
+            player.hills--;
+            player.forest--;
+            player.pasture--;
+            player.fields--;
+            return true;
+          }
+        }
+        else if (construction === 'city'){
+          if (player.mountains > 2 && player.fields > 1) {
+            player.mountains -=3 ;
+            player.fields -= 2;
+            return true;
+          }
+        }
+        debugger;
+        return false;
+      },
       buildRoad(road,ctrl) {
         if (road.player_id === ctrl.player.id) ctrl.roads++;
         PlayerService.get(road.player_id).then(res => {
@@ -640,11 +667,10 @@
           .reduce((arr,edge) => arr.concat(edge.nodes),[])
           .filter((node,i,arr) => arr.indexOf(node) === i && node.player_id === player.id)
           .forEach(node => {
-            player[tile.terrain] +=1;
-            if (node.building === 'city') player.resources.push(tile.terrain);
+            player[tile.terrain]++;
+            if (node.building === 'city') player[tile.terrain]++;
           });
         })
-        debugger
       },
       getRoads(id){
         return edges.filter(edge => edge.player_id === id).length;
